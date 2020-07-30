@@ -1,17 +1,66 @@
+require 'pry'
 def find_item_by_name_in_collection(name, collection)
-  # Implement me first!
-  #
-  # Consult README for inputs and outputs
+  order_of_goods = 0 
+  while order_of_goods < collection.length do 
+    shopping_list = collection[order_of_goods]
 
+    if shopping_list[:item] == name
+     return shopping_list
+    end 
+
+    order_of_goods += 1
+  end
+# binding.pry
 end
+
+
 
 def consolidate_cart(cart)
-  # Consult README for inputs and outputs
-  #
-  # REMEMBER: This returns a new Array that represents the cart. Don't merely
-  # change `cart` (i.e. mutate) it. It's easier to return a new thing.
+  index = 0
+  receipt = []
 
-end
+  cart.each do |goodsToAddedInReceipt|
+    goods = find_item_by_name_in_collection(goodsToAddedInReceipt[:item], receipt) 
+
+    if goods 
+      specificKindOfGood = 0
+
+      receipt.each do |existingGoods|
+
+        #  adding new key count 
+        if existingGoods[:item] == goods[:item]
+          existingGoods[:count] += 1
+        end 
+
+        specificKindOfGood += 1
+      end 
+    else
+      # setting key count to the goods for the first time
+      goodsToAddedInReceipt[:count] = 1
+      receipt << goodsToAddedInReceipt
+    end 
+    
+  end 
+  receipt
+end 
+
+
+  # binding.pry 
+  0
+
+
+ 
+ 
+
+
+
+ 
+
+
+    
+    
+
+
 
 
   
